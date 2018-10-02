@@ -18,10 +18,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;  
 
 var messageSchema = new Schema({    // The colelction (The entity) that we will be used 
-    name: { type: String   },       
-    address: { type: String   },     
-    email: { type: String },       
-    contact: { type: String },       
+    name: { type: String ,null:false  },       
+    address: { type: String  ,null:false },     
+    email: { type: String,null:false },       
+    contact: { type: String ,null:false},       
 },{ versionKey: false });  
    
   
@@ -33,10 +33,11 @@ app.post("/api/savedata",function(req,res){
     var mod = new model(req.body);  
         mod.save(function(err,data){  
             if(err){  
-                res.send(err);                
+                res.send(err);   
+                console.log(err)             
             }  
             else{        
-                 res.send({data:"Message has been sent!"});  
+                console.log("data saved")             
             }  
         });  
 })  
