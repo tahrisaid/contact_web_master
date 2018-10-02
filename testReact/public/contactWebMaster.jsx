@@ -1,9 +1,10 @@
 var MessageAll = React.createClass({   
   getInitialState: function () {  
     return { name: '' ,address: '',email:'',contact:'',id:'',Buttontxt:'Send', data1: []};  
-  },  
+  } ,
    handleChange: function(e) {  
         this.setState({[e.target.name]: e.target.value});  
+        
     },  
   
   componentDidMount() {  
@@ -29,13 +30,13 @@ var MessageAll = React.createClass({
       type: 'POST',  
       data: messagedata,  
       success: function(data) {         
-          alert(data.data);         
+          //alert(data.data);         
           this.setState(this.getInitialState());  
           this.componentDidMount();  
+          Document.write("Message has been sent!!!")
            
       }.bind(this),  
       error: function(xhr, status, err) {  
-         alert(err);       
       }.bind(this)  
     });  
   },  
@@ -53,7 +54,7 @@ var MessageAll = React.createClass({
                   <tr>
                      <td><b>Name</b></td>
                      <td>  
-                        <input className="form-control" type="text" value={this.state.name}    name="name" onChange={ this.handleChange } />  
+                        <input required="true" className="form-control" type="text" value={this.state.name}    name="name" onChange={ this.handleChange } onMouseEnter={this.testButton} />  
                         <input type="hidden" value={this.state.id}    name="id"  />  
                      </td>
                   </tr>
@@ -61,28 +62,28 @@ var MessageAll = React.createClass({
                   <tr>
                      <td><b>Address</b></td>
                      <td>  
-                        <input type="text" className="form-control" value={this.state.address}  name="address" onChange={ this.handleChange } />  
+                        <input required="true" type="text" className="form-control" value={this.state.address}  name="address" onChange={ this.handleChange } />  
                      </td>
                   </tr>
                   <br/> 
                   <tr>
                      <td><b>Email</b></td>
                      <td>  
-                        <input type="text"  className="form-control" value={this.state.email}  name="email" onChange={ this.handleChange } />  
+                        <input type="email" required="true" className="form-control" value={this.state.email}  name="email" onChange={ this.handleChange } />  
                      </td>
                   </tr>
                   <br/> 
                   <tr>
                      <td><b>Message</b></td>
                      <td>  
-                        <textarea type="text"  className="form-control" value={this.state.contact}  name="contact" onChange={ this.handleChange } ></textarea>  
+                        <textarea required="true" type="text"  className="form-control" value={this.state.contact}  name="contact" onChange={ this.handleChange } ></textarea>  
                      </td>
                   </tr>
                   <br/> 
                   <tr>
                      <td></td>
                      <td>  
-                        <input className="btn btn-primary" type="button" value={this.state.Buttontxt} onClick={this.handleClick} />  
+                        <input className="btn btn-primary" type="submit"  value={this.state.Buttontxt} onClick={this.handleClick} />  
                      </td>
                   </tr>
                </tbody>
